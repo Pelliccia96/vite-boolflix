@@ -4,6 +4,10 @@ import axios from "axios";
 export const store = reactive ({
     searchText: "",
     movies: [],
+    img: {
+        link: "https://image.tmdb.org/t/p/",
+        size: "w92",
+    }
 })
 
 export function fetchMovies() {
