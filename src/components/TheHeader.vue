@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-5 d-flex">
                 <input type="text" class="form-control me-4" v-model="searchText">
-                <button class="btn btn-dark text-black fw-semibold" @click="onSearchClick">Cerca</button>
+                <button class="btn btn-dark text-white fw-semibold" @click="onSearchClick">Cerca</button>
             </div>
         </div>
     </div>
