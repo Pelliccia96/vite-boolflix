@@ -19,6 +19,7 @@ export default{
         return {
             store,
             searchText:"",
+            display: false,
         }
     },
     methods: {
