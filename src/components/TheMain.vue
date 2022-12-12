@@ -1,9 +1,9 @@
 <template>
     <section>
-        <div class="container bg-secondary rounded-2 p-3 my-5">
+        <div class="container bg-black rounded-2 my-5">
             <div class="row">
                 <div v-for="(film,i) in store.movies" :key="i + film.id" class="col-3 d-flex flex-column g-5">
-                    <div class="card">
+                    <div class="card mb-3">
                         <img :src="store.img.link + store.img.size + film.poster_path" alt="" class="img-fluid">
                         <div class="p-2">
                             <h3><strong>Titolo:</strong> {{film.title}}</h3>
