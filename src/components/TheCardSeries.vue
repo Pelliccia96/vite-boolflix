@@ -16,6 +16,7 @@ export default {
     props: {
         serie: {
             type: Object,
+            required: true,
         }
     },
     data() {

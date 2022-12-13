@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { store, fetchMovies, fetchTv } from '../store';
+import { store } from '../store';
 export default{
     data() {
         return {
@@ -22,12 +22,12 @@ export default{
             display: false,
         }
     },
+    emits: ["performSearch"],
     methods: {
         onSearchClick () {
             this.store.searchText = this.searchText;
-            fetchMovies();
-            fetchTv();
             this.store.display = true;
+            this.$emit("performSearch");
         }
     },
 }
