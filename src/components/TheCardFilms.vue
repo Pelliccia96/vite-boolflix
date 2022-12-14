@@ -1,6 +1,7 @@
 <template>
     <div class="card mb-3">
-        <img :src="store.img.link + store.img.size + film.poster_path" alt="" class="img-fluid">
+        <img v-if="film.poster_path == null" :src="'https://picsum.photos/194/291'" alt="">
+        <img v-else :src="store.img.link + store.img.size + film.poster_path" alt="" class="img-fluid">
         <div class="p-2">
             <h3><strong>Titolo:</strong> {{ film.title }}</h3>
             <p class="text-secondary"><strong>Titolo originale:</strong> {{ film.original_title }}</p>
