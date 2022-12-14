@@ -3,13 +3,13 @@
         <img v-if="serie.poster_path == null" :src="'https://picsum.photos/194/291'" alt="">
         <img v-else :src="store.img.link + store.img.size + serie.poster_path" alt="" class="img-fluid">
         <div class="p-2">
-            <h3><strong>Titolo:</strong> {{ serie.name }}</h3>
-            <p class="text-secondary"><strong>Titolo originale:</strong> {{ serie.original_name }}</p>
-            <p class="text-secondary"><strong>Lingua:</strong> {{ serie.original_language }}</p>
-            <div class="stars-container">
+            <h4><strong>Titolo:</strong> {{ serie.original_name }}</h4>
+            <p class="text-secondary"><strong>Lingua:</strong> {{ serie.original_language }} <span :class="getFlag.icon"></span></p>
+            <div class="stars-container mb-2">
                 <i class="text-warning fa-star" v-for="star in movieStars"
-                :class="{'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half'}"></i>
+                    :class="{'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half'}"></i>
             </div>
+            <p class="text-secondary"><strong>Overview:</strong> {{serie.overview}}</p>
         </div>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
             type: Object,
             vote: Number,
             required: true,
-        }
+        },
     },
     data() {
         return {
@@ -46,7 +46,18 @@ export default {
                 toReturn.push(toPush);
             }
             return toReturn;
-        }
+        },
+        getFlag() {
+            let toReturn = { icon: `fi fi-${this.serie.original_language}` };
+            if (this.serie.original_language == "en") {
+                toReturn = { icon: "fi fi-gb" }
+            } else if (this.serie.original_language == "ja") {
+                toReturn = { icon: "fi fi-jp" }
+            } else if (this.serie.original_language == "ko") {
+                toReturn = { icon: "fi fi-kr" }
+            };
+            return toReturn
+        },
     },
 }
 </script>

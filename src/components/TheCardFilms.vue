@@ -3,19 +3,19 @@
         <img v-if="film.poster_path == null" :src="'https://picsum.photos/194/291'" alt="">
         <img v-else :src="store.img.link + store.img.size + film.poster_path" alt="" class="img-fluid">
         <div class="p-2">
-            <h3><strong>Titolo:</strong> {{ film.title }}</h3>
-            <p class="text-secondary"><strong>Titolo originale:</strong> {{ film.original_title }}</p>
-            <p class="text-secondary"><strong>Lingua:</strong> {{ film.original_language }}</p>
-            <div class="stars-container">
+            <h4><strong>Titolo:</strong> {{ film.original_title }}</h4>
+            <p class="text-secondary"><strong>Lingua:</strong> {{ film.original_language }} <span :class="getFlag.icon"></span></p>
+            <div class="stars-container mb-2">
                 <i class="text-warning fa-star" v-for="star in movieStars"
-                :class="{'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half'}"></i>
+                    :class="{ 'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half' }"></i>
             </div>
+            <p class="text-secondary"><strong>Overview:</strong> {{ film.overview }}</p>
         </div>
     </div>
 </template>
 
 <script>
-import  { store } from '../store';
+import { store } from '../store';
 export default {
     props: {
         film: {
@@ -36,7 +36,7 @@ export default {
             const vote = Math.floor(voteRow);
 
             for (let i = 0; i < 5; i++) {
-                let toPush =  i < vote;
+                let toPush = i < vote;
                 const decimal = voteRow % 1;
 
                 if (vote === i && decimal) {
@@ -46,10 +46,22 @@ export default {
                 toReturn.push(toPush);
             }
             return toReturn;
-        }
+        },
+        getFlag() {
+            let toReturn = { icon: `fi fi-${this.film.original_language}` };
+            if (this.film.original_language == "en") {
+                toReturn = { icon: "fi fi-gb" }
+            } else if (this.film.original_language == "ja") {
+                toReturn = { icon: "fi fi-jp" }
+            } else if (this.film.original_language == "ko") {
+                toReturn = { icon: "fi fi-kr" }
+            };
+            return toReturn
+        },
     },
 }
 </script>
 
 <style scoped>
+
 </style>
