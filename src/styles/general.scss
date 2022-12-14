@@ -1,2 +1,11 @@
 @use "@fortawesome/fontawesome-free/css/all.min.css";
 @import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+.card-img-overlay {
+    opacity: 0;
+    color: white;
+        &:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+}

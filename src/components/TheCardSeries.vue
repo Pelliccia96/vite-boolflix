@@ -1,15 +1,15 @@
 <template>
     <div class="card mb-3">
-        <img v-if="serie.poster_path == null" :src="'https://picsum.photos/194/291'" alt="">
-        <img v-else :src="store.img.link + store.img.size + serie.poster_path" alt="" class="img-fluid">
-        <div class="p-2">
+        <img v-if="serie.poster_path == null" :src="'https://picsum.photos/194/291'" alt="" class="card-img">
+        <img v-else :src="store.img.link + store.img.size + serie.poster_path" alt="" class="card-img">
+        <div class="card-img-overlay p-2 overflow-auto">
             <h4><strong>Titolo:</strong> {{ serie.original_name }}</h4>
-            <p class="text-secondary"><strong>Lingua:</strong> {{ serie.original_language }} <span :class="getFlag.icon"></span></p>
+            <p><strong>Lingua:</strong> {{ serie.original_language }} <span :class="getFlag.icon"></span></p>
             <div class="stars-container mb-2">
                 <i class="text-warning fa-star" v-for="star in movieStars"
                     :class="{'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half'}"></i>
             </div>
-            <p class="text-secondary"><strong>Overview:</strong> {{serie.overview}}</p>
+            <p><strong>Overview:</strong> {{serie.overview}}</p>
         </div>
     </div>
 </template>
