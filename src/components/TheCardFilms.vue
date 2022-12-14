@@ -6,7 +6,10 @@
             <h3><strong>Titolo:</strong> {{ film.title }}</h3>
             <p class="text-secondary"><strong>Titolo originale:</strong> {{ film.original_title }}</p>
             <p class="text-secondary"><strong>Lingua:</strong> {{ film.original_language }}</p>
-            <p class="text-secondary"><strong>Voto:</strong> {{ film.vote_average }}</p>
+            <div class="stars-container">
+                <i class="text-warning fa-star" v-for="star in movieStars"
+                :class="{'fa-solid': star === true, 'fa-regular': star === false, 'fa-solid fa-star-half-stroke': star === 'half'}"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -17,12 +20,32 @@ export default {
     props: {
         film: {
             type: Object,
+            vote: Number,
             required: true,
-        }
+        },
     },
     data() {
         return {
             store,
+        }
+    },
+    computed: {
+        movieStars() {
+            const toReturn = [];
+            const voteRow = this.film.vote_average / 2;
+            const vote = Math.floor(voteRow);
+
+            for (let i = 0; i < 5; i++) {
+                let toPush =  i < vote;
+                const decimal = voteRow % 1;
+
+                if (vote === i && decimal) {
+                    toPush = "half";
+                }
+
+                toReturn.push(toPush);
+            }
+            return toReturn;
         }
     },
 }
